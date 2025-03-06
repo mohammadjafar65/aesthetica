@@ -1,0 +1,13 @@
+p#radix-\:r5\: {
+    height: 100%;
+}
+
+span.new-tag {
+    position: absolute;
+    top: 0;
+    right: -59px;
+    background: #2196F3;
+    padding: 2px 16px;
+    font-size: 15px;
+    border-bottom-left-radius: 0;
+}

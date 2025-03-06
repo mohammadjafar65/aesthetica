@@ -1,0 +1,84 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect to HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Rewrite rule for the frontend project (Main domain)
+    RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com [NC,OR]
+    RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com [NC]
+    RewriteCond %{HTTP_HOST} ^(www\.)?cozyaestheticwallpaper\.com$ [NC]
+    RewriteCond %{REQUEST_URI} !^/frontend/build/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /frontend/build/index.html [L]
+
+    # Rewrite rule for the admin subdomain
+    RewriteCond %{HTTP_HOST} ^admin\.cozyaestheticwallpaper\.com$ [NC]
+    RewriteCond %{REQUEST_URI} !^/admin/build/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /admin/build/index.html [L]
+
+    # Rewrite rule for the backend project
+    RewriteCond %{HTTP_HOST} ^api\.cozyaestheticwallpaper\.com$ [NC]
+    RewriteCond %{REQUEST_URI} !^/backend/
+    RewriteRule ^(.*)$ https://api.cozyaestheticwallpaper.com:3000/$1 [P,L]
+
+</IfModule>
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+
+#     # Redirect to HTTPS
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#     # Rewrite rule for the frontend project
+#     RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com [NC,OR]
+#     RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com [NC]
+#     RewriteCond %{REQUEST_URI} !^/frontend/build/
+#     RewriteRule ^(.*)$ /frontend/build/$1 [L]
+
+#     # Rewrite rule for the frontend project
+#     RewriteCond %{HTTP_HOST} ^admin\.cozyaestheticwallpaper\.com [NC,OR]
+#     RewriteCond %{HTTP_HOST} ^admin\.cozyaestheticwallpaper\.com [NC]
+#     RewriteCond %{REQUEST_URI} !^/admin/build/
+#     RewriteRule ^(.*)$ /admin/build/$1 [L]
+
+#     # Rewrite rule for the backend project
+#     RewriteCond %{HTTP_HOST} ^api\.cozyaestheticwallpaper\.com$ [NC]
+#     RewriteCond %{REQUEST_URI} !^/backend/
+#     RewriteRule ^(.*)$ http://api.cozyaestheticwallpaper.com:3000/$1 [P,L]
+
+#     # If the request is for a file or directory that exists, serve it directly
+#     RewriteCond %{REQUEST_FILENAME} -f [OR]
+#     RewriteCond %{REQUEST_FILENAME} -d
+#     RewriteRule ^ - [L]
+
+#     # If the requested resource does not exist, send it to index.html
+#     RewriteRule ^ /frontend/build/index.html [L]
+# </IfModule>
+
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+
+#     # Redirect to HTTPS
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#     # Ensure request is for the correct domain
+#     RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com$ [NC]
+#     RewriteCond %{REQUEST_URI} !^/frontend/build/
+#     RewriteRule ^(.*)$ /frontend/build/$1 [L]
+
+#     # Serve files or directories if they exist
+#     RewriteCond %{REQUEST_FILENAME} -f [OR]
+#     RewriteCond %{REQUEST_FILENAME} -d
+#     RewriteRule ^ - [L]
+
+#     # If no match, route to index.html
+#     RewriteRule ^ /frontend/build/index.html [L]
+# </IfModule>
