@@ -6,25 +6,25 @@
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Rewrite rule for the frontend project (Main domain)
-    RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com [NC,OR]
-    RewriteCond %{HTTP_HOST} ^cozyaestheticwallpaper\.com [NC]
-    RewriteCond %{HTTP_HOST} ^(www\.)?cozyaestheticwallpaper\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^aesthetica.webinessdesign\.com [NC,OR]
+    RewriteCond %{HTTP_HOST} ^aesthetica.webinessdesign\.com [NC]
+    RewriteCond %{HTTP_HOST} ^(www\.)?aesthetica.webinessdesign\.com$ [NC]
     RewriteCond %{REQUEST_URI} !^/frontend/build/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ /frontend/build/index.html [L]
 
     # Rewrite rule for the admin subdomain
-    RewriteCond %{HTTP_HOST} ^admin\.cozyaestheticwallpaper\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^admin\.aesthetica.webinessdesign\.com$ [NC]
     RewriteCond %{REQUEST_URI} !^/admin/build/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ /admin/build/index.html [L]
 
     # Rewrite rule for the backend project
-    RewriteCond %{HTTP_HOST} ^api\.cozyaestheticwallpaper\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^api\.aesthetica.webinessdesign\.com$ [NC]
     RewriteCond %{REQUEST_URI} !^/backend/
-    RewriteRule ^(.*)$ https://api.cozyaestheticwallpaper.com:3000/$1 [P,L]
+    RewriteRule ^(.*)$ https://api.aesthetica.webinessdesign.com:3000/$1 [P,L]
 
 </IfModule>
 
