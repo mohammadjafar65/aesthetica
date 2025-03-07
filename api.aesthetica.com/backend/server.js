@@ -13,10 +13,10 @@ const port = process.env.PORT || 3000;
 
 // Database Connection
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host: "localhost",
+  user: "webifzwu_aesthetica",
+  password: "UniqWeb8017@",
+  database: "webifzwu_aesthetica_db",
 });
 
 connection.connect((err) => {
