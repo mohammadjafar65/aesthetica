@@ -171,11 +171,10 @@ app.get("/api/wallpapers", async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching wallpapers:", error);
-    res
-      .status(500)
-      .json({ error: "Failed to fetch wallpapers", details: error.message });
+    res.status(500).json({ error: "Failed to fetch wallpapers", details: error.message });
   }
 });
+
 
 app.get("/api/wallpapers/download/:filename", (req, res) => {
   const { filename } = req.params;
