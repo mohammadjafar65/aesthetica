@@ -39,9 +39,20 @@ const USERNAME = "Admin";
 const PASSWORD = "Zafar12@#";
 
 // Middleware
+// app.use(
+//   cors({
+//     origin: [process.env.ORIGIN, process.env.ORIGINWWW, process.env.ORIGINTWO],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: [process.env.ORIGIN, process.env.ORIGINWWW, process.env.ORIGINTWO],
+    origin: [
+      "https://admin.aesthetica.webinessdesign.com",
+      "https://aesthetica.webinessdesign.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
