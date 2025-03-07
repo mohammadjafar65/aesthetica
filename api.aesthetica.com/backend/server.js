@@ -147,6 +147,8 @@ app.get("/api/wallpapers", async (req, res) => {
   const { type } = req.query;
 
   try {
+    console.log("Fetching wallpapers...");
+
     let query = "SELECT * FROM discover_wallpapers";
     let queryParams = [];
 
@@ -156,10 +158,12 @@ app.get("/api/wallpapers", async (req, res) => {
       queryParams.push(type);
     }
 
-    // Order by createdAt in descending order to show latest wallpapers first
+    // Order by createdAt in descending order to show the latest wallpapers first
     query += " ORDER BY createdAt DESC";
 
     const [rows] = await connection.promise().query(query, queryParams);
+
+    console.log("Wallpapers fetched successfully:", rows.length, "items");
 
     res.json({
       message: "Wallpapers fetched successfully",
@@ -167,7 +171,9 @@ app.get("/api/wallpapers", async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching wallpapers:", error);
-    res.status(500).json({ error: "Failed to fetch wallpapers" });
+    res
+      .status(500)
+      .json({ error: "Failed to fetch wallpapers", details: error.message });
   }
 });
 
